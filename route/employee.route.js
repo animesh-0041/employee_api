@@ -6,6 +6,7 @@ const emplyeRoute=express.Router()
 
 //add
 emplyeRoute.post("/add",async(req,res)=>{
+    req.body.date=new Date().toISOString().slice(0,10)+" "+new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     try {
         const employee= new EmployeeModel(req.body)
         await employee.save()
